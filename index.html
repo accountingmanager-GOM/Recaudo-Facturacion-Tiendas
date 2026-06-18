@@ -783,21 +783,20 @@
       </div>
     </div>
 
-    <!-- CUSTOM MULTI-DATE CALENDAR POPUP -->
-    <div id="calendarPopup" style="display:none;position:fixed;z-index:9999;background:#0D1B30;border:1px solid rgba(255,255,255,0.15);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,0.6);padding:20px;width:310px;font-family:'Manrope',sans-serif;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
-        <button id="calPrev" style="background:none;border:none;color:rgba(255,255,255,0.6);font-size:18px;cursor:pointer;padding:4px 8px;border-radius:8px;">‹</button>
-        <span id="calMonthTitle" style="font-weight:600;font-size:14px;color:#fff;letter-spacing:0.04em;"></span>
-        <button id="calNext" style="background:none;border:none;color:rgba(255,255,255,0.6);font-size:18px;cursor:pointer;padding:4px 8px;border-radius:8px;">›</button>
-      </div>
-      <div id="calGrid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;"></div>
-      <div style="margin-top:14px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.08);padding-top:12px;">
-        <span id="calSelCount" style="font-size:11px;color:rgba(255,255,255,0.45);font-family:'JetBrains Mono',monospace;"></span>
-        <button id="calApply" style="background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.85));color:#0A2A55;border:none;border-radius:999px;padding:7px 18px;font-size:12px;font-weight:700;cursor:pointer;">Aplicar</button>
-      </div>
+  </div>
+
+  <!-- CUSTOM MULTI-DATE CALENDAR POPUP (outside filter-row) -->
+  <div id="calendarPopup" style="display:none;position:fixed;z-index:9999;background:#0D1B30;border:1px solid rgba(255,255,255,0.15);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,0.6);padding:20px;width:310px;font-family:'Manrope',sans-serif;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <button id="calPrev" style="background:none;border:none;color:rgba(255,255,255,0.6);font-size:18px;cursor:pointer;padding:4px 8px;border-radius:8px;">‹</button>
+      <span id="calMonthTitle" style="font-weight:600;font-size:14px;color:#fff;letter-spacing:0.04em;"></span>
+      <button id="calNext" style="background:none;border:none;color:rgba(255,255,255,0.6);font-size:18px;cursor:pointer;padding:4px 8px;border-radius:8px;">›</button>
     </div>
-
-
+    <div id="calGrid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;"></div>
+    <div style="margin-top:14px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.08);padding-top:12px;">
+      <span id="calSelCount" style="font-size:11px;color:rgba(255,255,255,0.45);font-family:'JetBrains Mono',monospace;"></span>
+      <button id="calApply" style="background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.85));color:#0A2A55;border:none;border-radius:999px;padding:7px 18px;font-size:12px;font-weight:700;cursor:pointer;">Aplicar</button>
+    </div>
   </div>
 
   <div class="kpi-grid">
@@ -1925,8 +1924,8 @@ function initCalendar() {
     pendingDates = new Set(FILTERS.selectedDates);
     renderCalendar();
     const rect = btn.getBoundingClientRect();
-    popup.style.top  = (rect.bottom + window.scrollY + 8) + 'px';
-    popup.style.left = Math.max(8, rect.left + window.scrollX) + 'px';
+    popup.style.top  = (rect.bottom + 8) + 'px';
+    popup.style.left = Math.max(8, rect.left) + 'px';
     popup.style.display = 'block';
   });
 
@@ -1958,6 +1957,7 @@ function initCalendar() {
 }
 
 wireExports();
+initCalendar();
 loadData();
 setInterval(loadData, 5 * 60 * 1000);
 </script>
